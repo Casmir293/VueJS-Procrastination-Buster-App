@@ -1,0 +1,18 @@
+.theme {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+}
+.light-theme {
+  background-color: $light;
+  color: $dark;
+}
+
+.dark-theme {
+  background-color: $dark;
+  color: $light;
+}
+
+.content {
+  transition: color 2s ease, background-color 2s ease;
+}
