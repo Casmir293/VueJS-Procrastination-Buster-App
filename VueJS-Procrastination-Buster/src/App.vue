@@ -3,7 +3,10 @@
     class="content"
     :class="theme === 'light' ? 'light-theme' : 'dark-theme'"
   >
-    <header class="d-flex align-items-center shadow-lg">
+    <header
+      class="d-flex align-items-center shadow-lg"
+      :class="theme === 'light' ? 'light-theme' : 'dark-theme'"
+    >
       <div>
         <img src="/overcome_procrastination.png" alt="logo" class="m-2" />
       </div>
@@ -17,7 +20,7 @@
       <options />
     </main>
 
-    <footer class="text-center py-3">
+    <footer class="text-center py-3 shadow-lg">
       All Rights Reserved &copy;
       <a href="casmir.dev" class="text-decoration-none">casmir.dev</a>
     </footer>
