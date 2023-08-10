@@ -21,15 +21,15 @@ header {
   animation-name: fade;
   animation-duration: 2.5s;
   animation-fill-mode: forwards;
-  background-color: #bdbdbd;
+  background-color: #8e8e8e;
 }
 header img {
   width: 50px;
   height: 50px;
 }
 header h1 {
-  color: #fff;
-  text-shadow: -1px -1px 0 #ff0000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  color: #e9f3ff;
+  text-shadow: -1px -1px 0 #ff0000, 1px -1px 0 #1c325e, -1px 1px 0 #1c325e, 1px 1px 0 #1c325e;
   font-size: 2rem;
 }
 header h3 {
@@ -53,15 +53,15 @@ header h3 {
 }
 
 .light-theme {
-  background-color: #fff;
-  color: #000;
+  background-color: #e9f3ff;
+  color: #1c325e;
 }
 
 .dark-theme {
-  background-color: #000;
-  color: #fff;
+  background-color: #1c325e;
+  color: #e9f3ff;
 }
 
 .content {
-  transition: color 2s ease, background-color 2s ease;
+  transition: color 1s ease, background-color 1s ease;
 }/*# sourceMappingURL=main.css.map */

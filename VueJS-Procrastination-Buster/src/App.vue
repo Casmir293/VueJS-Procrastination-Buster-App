@@ -13,7 +13,9 @@
       </div>
     </header>
 
-    <main></main>
+    <main>
+      <options />
+    </main>
 
     <footer></footer>
   </div>
@@ -32,6 +34,8 @@
 </template>
 
 <script>
+import Options from "./components/Options.vue";
+
 export default {
   name: "App",
   data() {
@@ -43,6 +47,9 @@ export default {
     changeTheme() {
       this.theme = this.theme === "dark" ? "light" : "dark";
     },
+  },
+  components: {
+    options: Options,
   },
 };
 </script>
