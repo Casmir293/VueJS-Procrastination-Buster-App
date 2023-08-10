@@ -2,7 +2,7 @@
   <div class="content">
     <p class="p-2 text-center my-5">
       Do you know that "a stich in time saves nine"? Let me assist you in
-      reaching your daily
+      reaching your daily <br />
       <span class="typing-animation"
         ><b>{{ currentPhrase }}</b></span
       >
@@ -26,7 +26,11 @@ export default {
 
       // Animated Text
       phrases: ["GOALS!", "TARGETS!!", "SCHEDULE!!!"],
-      currentIndex: 0,
+      erasing: false,
+      currentPhraseIndex: 0,
+      currentLetterIndex: 0,
+      currentWordIndex: 0,
+      currentWord: "",
       interval: null,
     };
   },
@@ -47,18 +51,50 @@ export default {
 
     // Animated Text
     currentPhrase() {
-      return this.phrases[this.currentIndex];
+      return this.currentWord;
     },
   },
 
   methods: {
-    //  Animated Text
-    startCycle() {
-      this.interval = setInterval(() => {
-        this.currentIndex = (this.currentIndex + 1) % this.phrases.length;
-      }, 3000);
+    // Animated Text
+    typeNextWord() {
+      const phrase = this.phrases[this.currentPhraseIndex];
+      const words = phrase.split(" ");
+      const word = words[this.currentWordIndex];
+
+      if (word) {
+        if (this.erasing) {
+          if (this.currentLetterIndex >= 0) {
+            this.currentWord = word.substring(0, this.currentLetterIndex);
+            this.currentLetterIndex--;
+          } else {
+            this.erasing = false;
+            this.currentWordIndex++;
+          }
+        } else {
+          if (this.currentLetterIndex < word.length) {
+            this.currentWord = word.substring(0, this.currentLetterIndex + 1);
+            this.currentLetterIndex++;
+          } else {
+            this.erasing = true;
+          }
+        }
+      } else {
+        this.currentPhraseIndex =
+          (this.currentPhraseIndex + 1) % this.phrases.length;
+        this.currentWordIndex = 0;
+        this.currentWord = "";
+        this.currentLetterIndex = 0;
+        this.erasing = false;
+      }
     },
-    stopCycle() {
+    startTyping() {
+      this.typeNextWord();
+      this.interval = setInterval(() => {
+        this.typeNextWord();
+      }, 300);
+    },
+    stopTyping() {
       clearInterval(this.interval);
     },
   },
@@ -70,7 +106,7 @@ export default {
     }, 1000);
 
     //  Animated Text
-    this.startCycle();
+    this.startTyping();
   },
 
   beforeDestroy() {
@@ -78,7 +114,7 @@ export default {
     clearInterval(this.interval);
 
     //  Animated Text
-    this.stopCycle();
+    this.stopTyping();
   },
 };
 </script>
