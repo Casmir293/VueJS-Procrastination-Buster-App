@@ -17,7 +17,10 @@
       <options />
     </main>
 
-    <footer></footer>
+    <footer class="text-center py-3">
+      All Rights Reserved &copy;
+      <a href="casmir.dev" class="text-decoration-none">casmir.dev</a>
+    </footer>
   </div>
   <div class="theme" @click="changeTheme">
     <font-awesome-icon
