@@ -49,12 +49,13 @@ export default {
   name: "App",
   data() {
     return {
-      theme: "light",
+      theme: localStorage.getItem("theme") || "dark",
     };
   },
   methods: {
     changeTheme() {
       this.theme = this.theme === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", this.theme);
     },
   },
   components: {
