@@ -17,7 +17,8 @@
     </header>
 
     <main>
-      <options />
+      <router-view name="options"></router-view>
+      <router-view></router-view>
     </main>
 
     <footer class="text-center py-3 shadow-lg">

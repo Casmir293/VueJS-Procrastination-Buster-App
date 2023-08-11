@@ -21,10 +21,17 @@ import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import ToDo from "./components/ToDo.vue";
 import Timer from "./components/Timer.vue";
+import Options from "./components/Options.vue";
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
+    {
+      path: "/",
+      components: {
+        options: Options,
+      },
+    },
     { path: "/to-do", component: ToDo },
     { path: "/timer", component: Timer },
   ],
