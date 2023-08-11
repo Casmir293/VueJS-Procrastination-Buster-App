@@ -19,6 +19,7 @@
 
 <script>
 export default {
+  name: "Options",
   data() {
     return {
       //  Date & Time

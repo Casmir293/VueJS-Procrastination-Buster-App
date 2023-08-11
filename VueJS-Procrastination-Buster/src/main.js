@@ -17,6 +17,21 @@ library.add(faMoon, faSun);
 import { createApp } from "vue";
 import App from "./App.vue";
 
+//  Vue Route
+import { createRouter, createWebHistory } from "vue-router";
+import ToDo from "./components/ToDo.vue";
+import Timer from "./components/Timer.vue";
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    { path: "/to-do", component: ToDo },
+    { path: "/timer", component: Timer },
+  ],
+});
+
+//  VM
 const vm = createApp(App);
 vm.component("font-awesome-icon", FontAwesomeIcon);
+vm.use(router);
 vm.mount("#app");
