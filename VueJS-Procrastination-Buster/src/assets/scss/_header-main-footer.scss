@@ -7,6 +7,16 @@
   }
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
 header {
   animation-name: fade;
   animation-duration: 2.5s;
@@ -37,9 +47,5 @@ header {
 @media only screen and (min-width: 576px) {
   header {
     padding-left: 50px;
-  }
-
-  .content {
-    min-height: 83vh;
   }
 }
