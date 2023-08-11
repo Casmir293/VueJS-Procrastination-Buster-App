@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <section class="content">
     <p class="p-2 text-center my-5">
       Do you know that "a stich in time saves nine"? Let me assist you in
       reaching your daily <br />
@@ -13,10 +13,8 @@
       </div>
       <router-link to="/to-do" class="button">Shedule Events</router-link>
       <router-link to="/timer" class="button">Set Timer</router-link>
-      <!-- <div class="button">Shedule Events</div>
-      <div class="button">Set Timer</div> -->
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

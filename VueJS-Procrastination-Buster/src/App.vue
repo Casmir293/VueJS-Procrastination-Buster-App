@@ -8,7 +8,9 @@
       :class="theme === 'light' ? 'light-theme' : 'dark-theme'"
     >
       <div>
-        <img src="/overcome_procrastination.png" alt="logo" class="m-2" />
+        <a href="/"
+          ><img src="/overcome_procrastination.png" alt="logo" class="m-2"
+        /></a>
       </div>
       <div class="">
         <h1>Procrastination</h1>
