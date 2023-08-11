@@ -11,8 +11,10 @@
       <div>
         {{ formattedDate }}
       </div>
-      <div class="button">Shedule Events</div>
-      <div class="button">Set Timer</div>
+      <router-link to="/to-do" class="button">Shedule Events</router-link>
+      <router-link to="/timer" class="button">Set Timer</router-link>
+      <!-- <div class="button">Shedule Events</div>
+      <div class="button">Set Timer</div> -->
     </div>
   </div>
 </template>
