@@ -30,8 +30,12 @@
           >
             <div class="row">
               <div class="my-1 col-md-10 col-lg-11">
-                <input class="form-check-input" type="checkbox" />
-                <label class="form-check-label ps-2">{{ todo }}</label>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  v-model="todo.checked"
+                />
+                <label class="form-check-label ps-2">{{ todo.text }}</label>
               </div>
               <div class="col-md-2 col-lg-1">
                 <button
@@ -62,8 +66,8 @@ export default {
 
   methods: {
     addTodo() {
-      if (this.newTodo.trim !== "") {
-        this.todos.push(this.newTodo);
+      if (this.newTodo.trim() !== "") {
+        this.todos.push({ text: this.newTodo, checked: false });
         this.newTodo = "";
       }
     },
