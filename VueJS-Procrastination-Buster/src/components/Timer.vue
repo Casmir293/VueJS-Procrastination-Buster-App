@@ -10,39 +10,53 @@
     <div
       class="rounded-3 shadow bg-light p-3 text-dark pb-1 p-sm-5 pb-sm-3 mb-2"
     >
-      <div class="d-flex justify-content-around">
+      <div class="d-flex justify-content-around py-5">
         <div class="d-flex align-items-center gap-2">
           <div>
-            <button @click="hour++">^</button>
-            <button class="d-block" @click="hour--">v</button>
+            <button @click="incrementHour">^</button>
+            <button class="d-block" @click="decrementHour">v</button>
           </div>
           <div>
-            <span>{{ hour }}</span> Hours
+            <span class="fs-3"
+              ><b>{{ hour }}</b></span
+            >
+            Hours
           </div>
         </div>
 
         <div class="d-flex align-items-center gap-2">
           <div>
-            <button @click="min++">^</button>
-            <button class="d-block" @click="min--">v</button>
+            <button @click="incrementMin">^</button>
+            <button class="d-block" @click="decrementMin">v</button>
           </div>
           <div>
-            <span>{{ min }}</span> Min
+            <span class="fs-3"
+              ><b>{{ min }}</b></span
+            >
+            Min
           </div>
         </div>
 
         <div class="d-flex align-items-center gap-2">
           <div>
-            <button @click="sec++">^</button>
-            <button class="d-block" @click="sec--">v</button>
+            <button @click="incrementSec">^</button>
+            <button class="d-block" @click="decrementSec">v</button>
           </div>
           <div>
-            <span>{{ sec }}</span> Sec
+            <span class="fs-3"
+              ><b>{{ sec }}</b></span
+            >
+            Sec
           </div>
         </div>
       </div>
     </div>
-    <div class="button"><b>START</b></div>
+    <div class="button my-5 text-center w-50 mx-auto">
+      <b>START</b>
+    </div>
+    <div class="button my-5 text-center w-50 mx-auto" @click="resetTimer">
+      <b>RESET</b>
+    </div>
   </section>
 </template>
 
@@ -56,6 +70,32 @@ export default {
       min: 0,
       sec: 0,
     };
+  },
+
+  methods: {
+    incrementHour() {
+      this.hour = (this.hour + 1) % 24;
+    },
+    decrementHour() {
+      this.hour = (this.hour - 1 + 24) % 24;
+    },
+    incrementMin() {
+      this.min = (this.min + 1) % 60;
+    },
+    decrementMin() {
+      this.min = (this.min - 1 + 60) % 60;
+    },
+    incrementSec() {
+      this.sec = (this.sec + 1) % 60;
+    },
+    decrementSec() {
+      this.sec = (this.sec - 1 + 60) % 60;
+    },
+    resetTimer() {
+      this.hour = 0;
+      this.min = 0;
+      this.sec = 0;
+    },
   },
 };
 </script>
