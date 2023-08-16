@@ -58,7 +58,13 @@
         <b>RESET</b>
       </div>
     </div>
-    <timing v-else :hour="hour" :min="min" :sec="sec" />
+    <timing
+      v-else
+      :hour="hour"
+      :min="min"
+      :sec="sec"
+      @cancel-timer="cancelTimer"
+    />
   </section>
 </template>
 
@@ -107,6 +113,10 @@ export default {
     },
     setTimer() {
       this.showTimingComponent = true;
+    },
+    cancelTimer() {
+      this.showTimingComponent = false;
+      this.resetTimer();
     },
   },
 };

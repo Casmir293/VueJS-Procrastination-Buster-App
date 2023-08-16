@@ -11,7 +11,7 @@
     <div class="button my-5 text-center w-50 mx-auto">
       <b>START</b>
     </div>
-    <div class="button my-5 text-center w-50 mx-auto">
+    <div @click="cancelTiming" class="button my-5 text-center w-50 mx-auto">
       <b>CANCEL</b>
     </div>
   </section>
@@ -20,9 +20,6 @@
 <script>
 export default {
   name: "Timing",
-  data() {
-    return {};
-  },
 
   props: {
     hour: Number,
@@ -33,6 +30,9 @@ export default {
   methods: {
     formatNumber(number) {
       return number.toString().padStart(2, "0");
+    },
+    cancelTiming() {
+      this.$emit("cancel-timer");
     },
   },
 
