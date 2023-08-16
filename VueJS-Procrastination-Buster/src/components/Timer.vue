@@ -6,69 +6,78 @@
         ><b>Schedule Event</b></router-link
       >
     </div>
+    <div class="my-content" v-if="!showTimingComponent">
+      <div
+        class="rounded-3 shadow bg-light p-3 text-dark pb-1 p-sm-5 pb-sm-3 mb-2"
+      >
+        <div class="d-flex justify-content-around py-5">
+          <div class="d-flex align-items-center gap-2">
+            <div>
+              <button @click="incrementHour">^</button>
+              <button class="d-block" @click="decrementHour">v</button>
+            </div>
+            <div>
+              <span class="fs-3"
+                ><b>{{ hour }}</b></span
+              >
+              Hours
+            </div>
+          </div>
 
-    <div
-      class="rounded-3 shadow bg-light p-3 text-dark pb-1 p-sm-5 pb-sm-3 mb-2"
-    >
-      <div class="d-flex justify-content-around py-5">
-        <div class="d-flex align-items-center gap-2">
-          <div>
-            <button @click="incrementHour">^</button>
-            <button class="d-block" @click="decrementHour">v</button>
+          <div class="d-flex align-items-center gap-2">
+            <div>
+              <button @click="incrementMin">^</button>
+              <button class="d-block" @click="decrementMin">v</button>
+            </div>
+            <div>
+              <span class="fs-3"
+                ><b>{{ min }}</b></span
+              >
+              Min
+            </div>
           </div>
-          <div>
-            <span class="fs-3"
-              ><b>{{ hour }}</b></span
-            >
-            Hours
-          </div>
-        </div>
 
-        <div class="d-flex align-items-center gap-2">
-          <div>
-            <button @click="incrementMin">^</button>
-            <button class="d-block" @click="decrementMin">v</button>
-          </div>
-          <div>
-            <span class="fs-3"
-              ><b>{{ min }}</b></span
-            >
-            Min
-          </div>
-        </div>
-
-        <div class="d-flex align-items-center gap-2">
-          <div>
-            <button @click="incrementSec">^</button>
-            <button class="d-block" @click="decrementSec">v</button>
-          </div>
-          <div>
-            <span class="fs-3"
-              ><b>{{ sec }}</b></span
-            >
-            Sec
+          <div class="d-flex align-items-center gap-2">
+            <div>
+              <button @click="incrementSec">^</button>
+              <button class="d-block" @click="decrementSec">v</button>
+            </div>
+            <div>
+              <span class="fs-3"
+                ><b>{{ sec }}</b></span
+              >
+              Sec
+            </div>
           </div>
         </div>
       </div>
+      <div class="button my-5 text-center w-50 mx-auto" @click="setTimer">
+        <b>SET TIME</b>
+      </div>
+      <div class="button my-5 text-center w-50 mx-auto" @click="resetTimer">
+        <b>RESET</b>
+      </div>
     </div>
-    <div class="button my-5 text-center w-50 mx-auto">
-      <b>START</b>
-    </div>
-    <div class="button my-5 text-center w-50 mx-auto" @click="resetTimer">
-      <b>RESET</b>
-    </div>
+    <timing v-else :hour="hour" :min="min" :sec="sec" />
   </section>
 </template>
 
 <script>
+import Timing from "./Timing.vue";
+
 export default {
   name: "Timer",
+
+  components: {
+    timing: Timing,
+  },
 
   data() {
     return {
       hour: 0,
       min: 0,
       sec: 0,
+      showTimingComponent: false,
     };
   },
 
@@ -95,6 +104,9 @@ export default {
       this.hour = 0;
       this.min = 0;
       this.sec = 0;
+    },
+    setTimer() {
+      this.showTimingComponent = true;
     },
   },
 };
