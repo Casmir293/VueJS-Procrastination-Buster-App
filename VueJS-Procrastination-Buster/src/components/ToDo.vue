@@ -26,7 +26,7 @@
       <ul class="p-0">
         <li v-for="(todo, index) in todos" :key="index">
           <div
-            class="my-3 p-3 p-sm-4 shadow-sm rounded-3 text-light bg-secondary myTask"
+            class="my-3 p-3 p-sm-4 shadow-sm rounded-3 text-light bg-secondary"
           >
             <div class="row">
               <div class="my-1 col-md-10 col-lg-11">

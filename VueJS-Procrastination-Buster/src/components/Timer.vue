@@ -80,43 +80,70 @@ export default {
 
   data() {
     return {
-      hour: 0,
-      min: 0,
-      sec: 0,
+      hour: parseInt(localStorage.getItem("hour")) || 0,
+      min: parseInt(localStorage.getItem("min")) || 0,
+      sec: parseInt(localStorage.getItem("sec")) || 0,
       showTimingComponent: false,
     };
+  },
+
+  created() {
+    this.loadShowTimingComponent();
   },
 
   methods: {
     incrementHour() {
       this.hour = (this.hour + 1) % 24;
+      this.saveToLocalStorage();
     },
     decrementHour() {
       this.hour = (this.hour - 1 + 24) % 24;
+      this.saveToLocalStorage();
     },
     incrementMin() {
       this.min = (this.min + 1) % 60;
+      this.saveToLocalStorage();
     },
     decrementMin() {
       this.min = (this.min - 1 + 60) % 60;
+      this.saveToLocalStorage();
     },
     incrementSec() {
       this.sec = (this.sec + 1) % 60;
+      this.saveToLocalStorage();
     },
     decrementSec() {
       this.sec = (this.sec - 1 + 60) % 60;
+      this.saveToLocalStorage();
     },
     resetTimer() {
       this.hour = 0;
       this.min = 0;
       this.sec = 0;
+      localStorage.removeItem("hour");
+      localStorage.removeItem("min");
+      localStorage.removeItem("sec");
+    },
+    saveToLocalStorage() {
+      localStorage.setItem("hour", this.hour);
+      localStorage.setItem("min", this.min);
+      localStorage.setItem("sec", this.sec);
     },
     setTimer() {
       this.showTimingComponent = true;
+      this.saveShowTimingComponent();
     },
     cancelTimer() {
       this.showTimingComponent = false;
       this.resetTimer();
+      this.saveShowTimingComponent();
+    },
+    saveShowTimingComponent() {
+      localStorage.setItem("showTimingComponent", this.showTimingComponent);
+    },
+    loadShowTimingComponent() {
+      const showTimingComponent = localStorage.getItem("showTimingComponent");
+      this.showTimingComponent = showTimingComponent === "true";
     },
   },
 };
