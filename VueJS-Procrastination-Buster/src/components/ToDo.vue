@@ -34,6 +34,7 @@
                   class="form-check-input"
                   type="checkbox"
                   v-model="todo.checked"
+                  @change="toggleCheck(todo)"
                 />
                 <label class="form-check-label ps-2">{{ todo.text }}</label>
               </div>
@@ -81,6 +82,11 @@ export default {
       localStorage.setItem("todos", JSON.stringify(this.todos));
     },
 
+    toggleCheck(todo) {
+      todo.checked;
+      this.saveToDos();
+    },
+
     loadToDos() {
       const savedToDos = localStorage.getItem("todos");
       if (savedToDos) {
@@ -90,6 +96,7 @@ export default {
 
     removeTodo(index) {
       this.todos.splice(index, 1);
+      this.saveToDos();
     },
   },
 };
