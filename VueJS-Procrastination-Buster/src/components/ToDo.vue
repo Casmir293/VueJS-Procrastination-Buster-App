@@ -64,11 +64,27 @@ export default {
     };
   },
 
+  created() {
+    this.loadToDos();
+  },
+
   methods: {
     addTodo() {
       if (this.newTodo.trim() !== "") {
         this.todos.push({ text: this.newTodo, checked: false });
+        this.saveToDos();
         this.newTodo = "";
+      }
+    },
+
+    saveToDos() {
+      localStorage.setItem("todos", JSON.stringify(this.todos));
+    },
+
+    loadToDos() {
+      const savedToDos = localStorage.getItem("todos");
+      if (savedToDos) {
+        this.todos = JSON.parse(savedToDos);
       }
     },
 
