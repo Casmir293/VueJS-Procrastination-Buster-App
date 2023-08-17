@@ -8,7 +8,11 @@
       </div>
     </div>
 
-    <div @click="startTimer" class="button my-5 text-center w-50 mx-auto">
+    <div
+      v-if="!timerStarted"
+      @click="startTimer"
+      class="button my-5 text-center w-50 mx-auto"
+    >
       <b>START</b>
     </div>
     <div @click="cancelTiming" class="button my-5 text-center w-50 mx-auto">
@@ -34,6 +38,7 @@ export default {
       localHour: this.hour,
       localMin: this.min,
       localSec: this.sec,
+      timerStarted: false,
     };
   },
 
@@ -42,6 +47,7 @@ export default {
       return number.toString().padStart(2, "0");
     },
     startTimer() {
+      this.timerStarted = true;
       this.localHour = this.hour;
       this.localMin = this.min;
       this.localSec = this.sec;
