@@ -1,4 +1,17 @@
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .options {
+  animation-name: fade;
+  animation-duration: 2.5s;
+  animation-fill-mode: forwards;
+  transition: color 1s ease, background-color 1s ease;
   align-items: center;
   background: linear-gradient(-45deg, #00000038, #ffffff40);
   box-shadow: 12px 12px 16px 0 #00000040, -8px -8px 12px 0 #ffffff4d;

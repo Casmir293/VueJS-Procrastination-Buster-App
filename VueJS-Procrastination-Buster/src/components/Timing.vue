@@ -100,10 +100,6 @@ export default {
       return this.formatNumber(this.localSec);
     },
   },
-
-  // beforeDestroy() {
-  //   this.stopTimer();
-  // },
 };
 </script>
 
