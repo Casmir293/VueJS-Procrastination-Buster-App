@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <div class="button my-5 text-center w-50 mx-auto">
+    <div @click="startTimer" class="button my-5 text-center w-50 mx-auto">
       <b>START</b>
     </div>
     <div @click="cancelTiming" class="button my-5 text-center w-50 mx-auto">
@@ -27,25 +27,73 @@ export default {
     sec: Number,
   },
 
+  data() {
+    return {
+      remainingTime: 0,
+      timerInterval: null,
+      localHour: this.hour,
+      localMin: this.min,
+      localSec: this.sec,
+    };
+  },
+
   methods: {
     formatNumber(number) {
       return number.toString().padStart(2, "0");
     },
+    startTimer() {
+      this.localHour = this.hour;
+      this.localMin = this.min;
+      this.localSec = this.sec;
+
+      this.remainingTime =
+        this.localHour * 3600 + this.localMin * 60 + this.localSec;
+
+      this.timerInterval = setInterval(() => {
+        if (this.remainingTime > 0) {
+          this.remainingTime--;
+          this.updateLocalStorage();
+
+          const hours = Math.floor(this.remainingTime / 3600);
+          const minutes = Math.floor((this.remainingTime % 3600) / 60);
+          const seconds = this.remainingTime % 60;
+
+          this.localHour = hours;
+          this.localMin = minutes;
+          this.localSec = seconds;
+        } else {
+          this.stopTimer();
+        }
+      }, 1000);
+    },
+    stopTimer() {
+      clearInterval(this.timerInterval);
+    },
     cancelTiming() {
+      this.stopTimer();
       this.$emit("cancel-timer");
+    },
+    updateLocalStorage() {
+      localStorage.setItem("hour", this.localHour);
+      localStorage.setItem("min", this.localMin);
+      localStorage.setItem("sec", this.localSec);
     },
   },
 
   computed: {
     formattedHour() {
-      return this.formatNumber(this.hour);
+      return this.formatNumber(this.localHour);
     },
     formattedMin() {
-      return this.formatNumber(this.min);
+      return this.formatNumber(this.localMin);
     },
     formattedSec() {
-      return this.formatNumber(this.sec);
+      return this.formatNumber(this.localSec);
     },
+  },
+
+  beforeDestroy() {
+    this.stopTimer();
   },
 };
 </script>
