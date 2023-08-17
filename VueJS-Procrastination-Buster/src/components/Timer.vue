@@ -13,8 +13,8 @@
         <div class="d-flex justify-content-around py-5">
           <div class="d-flex align-items-center gap-2">
             <div>
-              <button @click="incrementHour">^</button>
-              <button class="d-block" @click="decrementHour">v</button>
+              <button class="navigate" @click="incrementHour">^</button>
+              <button class="d-block navigate" @click="decrementHour">v</button>
             </div>
             <div>
               <span class="fs-3"
@@ -26,8 +26,8 @@
 
           <div class="d-flex align-items-center gap-2">
             <div>
-              <button @click="incrementMin">^</button>
-              <button class="d-block" @click="decrementMin">v</button>
+              <button class="navigate" @click="incrementMin">^</button>
+              <button class="d-block navigate" @click="decrementMin">v</button>
             </div>
             <div>
               <span class="fs-3"
@@ -39,8 +39,8 @@
 
           <div class="d-flex align-items-center gap-2">
             <div>
-              <button @click="incrementSec">^</button>
-              <button class="d-block" @click="decrementSec">v</button>
+              <button class="navigate" @click="incrementSec">^</button>
+              <button class="d-block navigate" @click="decrementSec">v</button>
             </div>
             <div>
               <span class="fs-3"
@@ -130,6 +130,10 @@ export default {
       localStorage.setItem("sec", this.sec);
     },
     setTimer() {
+      if (this.hour === 0 && this.min === 0 && this.sec === 0) {
+        alert("Please set up timer!");
+        return;
+      }
       this.showTimingComponent = true;
       this.saveShowTimingComponent();
     },
@@ -150,5 +154,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/timer";
+@import "../assets/scss/timer-timing-comp";
 </style>

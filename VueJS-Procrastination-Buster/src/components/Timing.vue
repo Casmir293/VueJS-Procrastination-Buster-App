@@ -108,5 +108,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/timing";
+@import "../assets/scss/timer-timing-comp";
 </style>
