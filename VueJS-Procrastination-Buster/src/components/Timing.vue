@@ -69,6 +69,9 @@ export default {
           this.localSec = seconds;
         } else {
           this.stopTimer();
+          localStorage.removeItem("hour");
+          localStorage.removeItem("min");
+          localStorage.removeItem("sec");
         }
       }, 1000);
     },
@@ -98,9 +101,9 @@ export default {
     },
   },
 
-  beforeDestroy() {
-    this.stopTimer();
-  },
+  // beforeDestroy() {
+  //   this.stopTimer();
+  // },
 };
 </script>
 
