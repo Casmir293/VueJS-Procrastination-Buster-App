@@ -1,15 +1,19 @@
 <template>
   <section class="container">
+    <!-- Header -->
     <div class="my-4 d-flex justify-content-between align-items-center">
       <h2>Timer</h2>
       <router-link to="/to-do" class="button"
         ><b>Schedule Event</b></router-link
       >
     </div>
+
     <div class="my-content" v-if="!showTimingComponent">
+      <!-- Timer Configuration -->
       <div
         class="rounded-3 shadow bg-light p-3 text-dark pb-1 p-sm-5 pb-sm-3 mb-2"
       >
+        <!-- Hour -->
         <div class="d-flex justify-content-around py-5">
           <div class="d-flex align-items-center gap-2">
             <div>
@@ -24,6 +28,7 @@
             </div>
           </div>
 
+          <!-- Minute -->
           <div class="d-flex align-items-center gap-2">
             <div>
               <button class="navigate" @click="incrementMin">^</button>
@@ -37,6 +42,7 @@
             </div>
           </div>
 
+          <!-- Second -->
           <div class="d-flex align-items-center gap-2">
             <div>
               <button class="navigate" @click="incrementSec">^</button>
@@ -51,13 +57,19 @@
           </div>
         </div>
       </div>
+
+      <!-- Set Timer Button -->
       <div class="button my-5 text-center w-50 mx-auto" @click="setTimer">
         <b>SET TIME</b>
       </div>
+
+      <!-- Reset Timer Button -->
       <div class="button my-5 text-center w-50 mx-auto" @click="resetTimer">
         <b>RESET</b>
       </div>
     </div>
+
+    <!-- timing component -->
     <timing
       v-else
       :hour="hour"
@@ -87,35 +99,44 @@ export default {
     };
   },
 
-  created() {
-    this.loadShowTimingComponent();
-  },
-
   methods: {
+    // Increment hour
     incrementHour() {
       this.hour = (this.hour + 1) % 24;
       this.saveToLocalStorage();
     },
+
+    // Decrement hour
     decrementHour() {
       this.hour = (this.hour - 1 + 24) % 24;
       this.saveToLocalStorage();
     },
+
+    // Increment minute
     incrementMin() {
       this.min = (this.min + 1) % 60;
       this.saveToLocalStorage();
     },
+
+    // Decrement minute
     decrementMin() {
       this.min = (this.min - 1 + 60) % 60;
       this.saveToLocalStorage();
     },
+
+    // Increment second
     incrementSec() {
       this.sec = (this.sec + 1) % 60;
       this.saveToLocalStorage();
     },
+
+    // Decrement second
     decrementSec() {
       this.sec = (this.sec - 1 + 60) % 60;
       this.saveToLocalStorage();
     },
+
+    // Reset timer
     resetTimer() {
       this.hour = 0;
       this.min = 0;
@@ -124,11 +145,15 @@ export default {
       localStorage.removeItem("min");
       localStorage.removeItem("sec");
     },
+
+    // Save current timing values to local storage
     saveToLocalStorage() {
       localStorage.setItem("hour", this.hour);
       localStorage.setItem("min", this.min);
       localStorage.setItem("sec", this.sec);
     },
+
+    // Set the timer
     setTimer() {
       if (this.hour === 0 && this.min === 0 && this.sec === 0) {
         alert("Please set up timer!");
@@ -137,18 +162,26 @@ export default {
       this.showTimingComponent = true;
       this.saveShowTimingComponent();
     },
+
+    // Cancel the timer
     cancelTimer() {
       this.showTimingComponent = false;
       this.resetTimer();
       this.saveShowTimingComponent();
     },
+
     saveShowTimingComponent() {
       localStorage.setItem("showTimingComponent", this.showTimingComponent);
     },
+
     loadShowTimingComponent() {
       const showTimingComponent = localStorage.getItem("showTimingComponent");
       this.showTimingComponent = showTimingComponent === "true";
     },
+  },
+
+  created() {
+    this.loadShowTimingComponent();
   },
 };
 </script>

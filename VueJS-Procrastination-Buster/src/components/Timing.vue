@@ -1,5 +1,6 @@
 <template>
   <section>
+    <!-- Timer Display -->
     <div
       class="rounded-3 shadow bg-light p-3 text-dark pb-1 p-sm-5 pb-sm-3 mb-2 text-center"
     >
@@ -8,6 +9,7 @@
       </div>
     </div>
 
+    <!-- Start Button -->
     <div
       v-if="!timerStarted"
       @click="startTimer"
@@ -15,6 +17,8 @@
     >
       <b>START</b>
     </div>
+
+    <!-- Cancel Button -->
     <div @click="cancelTiming" class="button my-5 text-center w-50 mx-auto">
       <b>CANCEL</b>
     </div>
@@ -43,9 +47,12 @@ export default {
   },
 
   methods: {
+    // Format a number to have leading zeros
     formatNumber(number) {
       return number.toString().padStart(2, "0");
     },
+
+    // Start the timer
     startTimer() {
       this.timerStarted = true;
       this.localHour = this.hour;
@@ -75,13 +82,19 @@ export default {
         }
       }, 1000);
     },
+
+    // Stop the timer
     stopTimer() {
       clearInterval(this.timerInterval);
     },
+
+    // Cancel timing and emit event to parent
     cancelTiming() {
       this.stopTimer();
       this.$emit("cancel-timer");
     },
+
+    // Update local storage with current timing values
     updateLocalStorage() {
       localStorage.setItem("hour", this.localHour);
       localStorage.setItem("min", this.localMin);
@@ -90,6 +103,7 @@ export default {
   },
 
   computed: {
+    // Formatted hour, minute, and second
     formattedHour() {
       return this.formatNumber(this.localHour);
     },

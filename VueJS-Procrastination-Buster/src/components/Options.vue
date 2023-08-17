@@ -1,5 +1,6 @@
 <template>
   <section class="content">
+    <!-- Intro Text -->
     <p class="p-2 text-center my-5">
       Do you know that "a stich in time saves nine"? Let me assist you in
       reaching your daily <br />
@@ -7,6 +8,8 @@
         ><b>{{ currentPhrase }}</b></span
       >
     </p>
+
+    <!-- Options Links -->
     <div class="options mx-auto mb-5">
       <div>
         {{ formattedDate }}
@@ -20,6 +23,7 @@
 <script>
 export default {
   name: "Options",
+
   data() {
     return {
       //  Date & Time
@@ -35,6 +39,7 @@ export default {
       interval: null,
     };
   },
+
   computed: {
     //  Date & Time
     formattedDate() {
@@ -89,12 +94,14 @@ export default {
         this.erasing = false;
       }
     },
+
     startTyping() {
       this.typeNextWord();
       this.interval = setInterval(() => {
         this.typeNextWord();
       }, 300);
     },
+
     stopTyping() {
       clearInterval(this.interval);
     },

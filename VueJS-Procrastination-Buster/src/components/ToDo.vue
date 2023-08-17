@@ -1,12 +1,13 @@
 <template>
   <section class="container">
+    <!-- Header -->
     <div class="my-4 d-flex justify-content-between align-items-center">
       <h2>My Schedule</h2>
       <router-link to="/timer" class="button"><b>Set Timer</b></router-link>
     </div>
 
+    <!-- Add Task Input -->
     <div class="rounded-3 shadow bg-light p-3 pb-1 p-sm-5 pb-sm-3 mb-2">
-      <!--INPUT-BAR-->
       <input
         class="form-control"
         type="text"
@@ -17,12 +18,12 @@
       />
       <br />
 
-      <!--ADD-BUTTON-->
+      <!-- Add Task Button -->
       <button class="btn btn-sm btn-primary mb-3" @click="addTodo">
         Add Task
       </button>
 
-      <!--TO-DO-->
+      <!-- List of Tasks -->
       <ul class="p-0">
         <li v-for="(todo, index) in todos" :key="index">
           <div
@@ -70,6 +71,7 @@ export default {
   },
 
   methods: {
+    // Add a new task
     addTodo() {
       if (this.newTodo.trim() !== "") {
         this.todos.push({ text: this.newTodo, checked: false });
@@ -78,15 +80,18 @@ export default {
       }
     },
 
+    // Save task list to local storage
     saveToDos() {
       localStorage.setItem("todos", JSON.stringify(this.todos));
     },
 
+    // Toggle task completion
     toggleCheck(todo) {
       todo.checked;
       this.saveToDos();
     },
 
+    // Load task list from local storage
     loadToDos() {
       const savedToDos = localStorage.getItem("todos");
       if (savedToDos) {
@@ -94,6 +99,7 @@ export default {
       }
     },
 
+    // Remove a task
     removeTodo(index) {
       this.todos.splice(index, 1);
       this.saveToDos();
