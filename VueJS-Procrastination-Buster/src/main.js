@@ -32,8 +32,8 @@ const router = createRouter({
         options: Options,
       },
     },
-    { path: "/to-do", component: ToDo },
-    { path: "/timer", component: Timer },
+    { path: "/to-do", name: "ToDo", component: ToDo },
+    { path: "/timer", name: "Timer", component: Timer },
   ],
 });
 
