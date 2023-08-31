@@ -19,10 +19,6 @@ import App from "./App.vue";
 
 //  Vue Route
 import { createRouter, createWebHistory } from "vue-router";
-import ToDo from "./components/ToDo.vue";
-import Timer from "./components/Timer.vue";
-import Options from "./components/Options.vue";
-import NotFound from "./components/NotFound.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -30,12 +26,24 @@ const router = createRouter({
     {
       path: "/",
       components: {
-        options: Options,
+        options: () => import("./components/Options.vue"),
       },
     },
-    { path: "/to-do", name: "ToDo", component: ToDo },
-    { path: "/timer", name: "Timer", component: Timer },
-    { path: "/:catchAll(.*)", name: "NotFound", component: NotFound },
+    {
+      path: "/to-do",
+      name: "ToDo",
+      component: () => import("./components/ToDo.vue"),
+    },
+    {
+      path: "/timer",
+      name: "Timer",
+      component: () => import("./components/Timer.vue"),
+    },
+    {
+      path: "/:catchAll(.*)",
+      name: "NotFound",
+      component: () => import("./components/NotFound.vue"),
+    },
   ],
 });
 

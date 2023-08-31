@@ -21,7 +21,7 @@
 
     <!-- Main Content -->
     <main>
-      <!-- <router-view name="options"></router-view> -->
+      <router-view name="options"></router-view>
       <router-view></router-view>
     </main>
 
